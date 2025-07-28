@@ -13,6 +13,16 @@ model User {
   name      String   @unique
   email     String 
   ProfileImage String 
+  contents   Content[]
+}
+
+model Content {
+  id            Int      @id @default(autoincrement())
+  content       String
+  response      String
+  createAt      DateTime  @default(now())
+  userId        Int
+  user          User     @relation(fields: [userId] , references: [id])
 }
 
 
