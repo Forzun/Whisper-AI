@@ -1,6 +1,7 @@
-import { Globe } from "@/components/magicui/globe";
+import UserInput from "@/components/custom/userInput";
 
 export default function Home() {
-  return <div className="container-wrapper bg-white">
+  return <div className="container-wrapper">
+    <UserInput />
   </div>;
 }

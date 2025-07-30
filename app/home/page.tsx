@@ -1,9 +1,10 @@
 import AiInput from "@/components/AiInput";
+import Container from "@/components/container";
 import Navbar from "@/components/navbar";
 
 export default function Home() {
   return (
-    <div className="container-wrapper relative">
+    <div className="relative w-full">
         <div
           className="absolute inset-0 -z-10"
           style={{
@@ -11,8 +12,10 @@ export default function Home() {
               "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(120, 180, 255, 0.25), transparent 70%), #000000",
           }}
         />
-      <Navbar />
-      <AiInput />
+       <Container className="">
+          <Navbar />
+          <AiInput />
+       </Container>
     </div>
   );
 }

@@ -76,6 +76,7 @@ const AnimatedPlaceholder = ({ showSearch }: { showSearch: boolean }) => (
 
 export default function AiInput() {
   const [value, setValue] = useState("")
+  const [bottom , setBottom] = useState(false);
   const { textareaRef, adjustHeight } = useAutoResizeTextarea({
     minHeight: MIN_HEIGHT,
     maxHeight: MAX_HEIGHT,
@@ -83,6 +84,7 @@ export default function AiInput() {
   const [showSearch, setShowSearch] = useState(true)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  
 
   const handelClose = (e: any) => {
     e.preventDefault()
@@ -99,12 +101,15 @@ export default function AiInput() {
       setImagePreview(URL.createObjectURL(file))
     }
   }
-
+  
   const handleSubmit = () => {
     setValue("")
     adjustHeight(true)
+    setBottom(true)
   }
-
+  
+  console.log(bottom)
+  
   useEffect(() => {
     return () => {
       if (imagePreview) {
@@ -113,8 +118,22 @@ export default function AiInput() {
     }
   }, [imagePreview])
   return (
-    <div className="w-full py-4">
-      <div className="relative max-w-4xl border rounded-[22px] border-black/5 p-1 w-full mx-auto">
+    <div className="w-full overflow-hidden h-[90vh]">
+      <motion.div
+            initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)",}}
+            transition={{
+              duration: 0.3,
+              ease: "easeInOut",
+              layout: { delay: bottom ? 0.2 : 0 } // Add delay only for layout changes
+            }}
+            layout
+            style={{ justifyContent: bottom ? "end" : "flex-start" }} 
+        className={`flex flex-col h-full md:pt-20 pt-10 border border-dashed `}>  
+      <motion.div 
+            animate={{transition: {duration:0.4 , ease: "easeInOut"}}}
+           className={`relative max-w-4xl border rounded-[22px] w-full border-black/5 p-1 mx-auto`}> 
+
         <div className="relative rounded-2xl border border-black/5 bg-neutral-800/5 flex flex-col">
           <div
             className="overflow-y-auto"
@@ -261,7 +280,8 @@ export default function AiInput() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
+      </motion.div>
     </div>
   )
 }

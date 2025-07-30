@@ -34,10 +34,10 @@ export default function RootLayout({
         className={`${inter.className} antialiased bg-neutral-950`}
       >
         <ThemeProvider
-         attribute="class"
-         defaultTheme="system"
-         enableSystem
-         disableTransitionOnChange
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
         >
          {children}
         </ThemeProvider>
