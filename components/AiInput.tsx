@@ -69,7 +69,7 @@ const AnimatedPlaceholder = ({ showSearch }: { showSearch: boolean }) => (
       transition={{ duration: 0.1 }}
       className="pointer-events-none w-[150px] text-sm absolute text-black/70 dark:text-white/70"
     >
-      {showSearch ? "Search the web..." : "Ask Skiper Ai..."}
+      {showSearch ? "Not available yet" : "Ask Skiper Ai..."}
     </motion.p>
   </AnimatePresence>
 )
@@ -114,7 +114,7 @@ export default function AiInput() {
   }, [imagePreview])
   return (
     <div className="w-full py-4">
-      <div className="relative max-w-xl border rounded-[22px] border-black/5 p-1 w-full mx-auto">
+      <div className="relative max-w-4xl border rounded-[22px] border-black/5 p-1 w-full mx-auto">
         <div className="relative rounded-2xl border border-black/5 bg-neutral-800/5 flex flex-col">
           <div
             className="overflow-y-auto"
@@ -194,7 +194,7 @@ export default function AiInput() {
                 className={cn(
                   "rounded-full transition-all flex items-center gap-2 px-1.5 py-1 border h-8",
                   showSearch
-                    ? "bg-[#ff3f17]/15 border-[#ff3f17] text-[#ff3f17]"
+                    ? "bg-neutral-800/10 border-dashed text-neutral-100"
                     : "bg-black/5 dark:bg-white/5 border-transparent text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white"
                 )}
               >
@@ -222,7 +222,7 @@ export default function AiInput() {
                     <Globe
                       className={cn(
                         "w-4 h-4",
-                        showSearch ? "text-[#ff3f17]" : "text-inherit"
+                        showSearch ? "text-neutral-500" : "text-inherit"
                       )}
                     />
                   </motion.div>
@@ -237,7 +237,7 @@ export default function AiInput() {
                       }}
                       exit={{ width: 0, opacity: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="text-sm overflow-hidden whitespace-nowrap text-[#ff3f17] flex-shrink-0"
+                      className="text-sm overflow-hidden whitespace-nowrap text-neutral-100 flex-shrink-0"
                     >
                       Search
                     </motion.span>
@@ -250,9 +250,9 @@ export default function AiInput() {
                 type="button"
                 onClick={handleSubmit}
                 className={cn(
-                  "rounded-full p-2 transition-colors",
+                  "rounded-full border border-dashed  p-2 transition-colors",
                   value
-                    ? "bg-[#ff3f17]/15 text-[#ff3f17]"
+                    ? "bg-neutral-100/10 text-neutral-100"
                     : "bg-black/5 dark:bg-white/5 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white"
                 )}
               >
