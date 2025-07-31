@@ -124,3 +124,7 @@
 .container-wrapper {
   @apply w-full min-h-screen h-full text-neutral-100 dark:text-neutral-100 px-8 p-5
 }
+
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}

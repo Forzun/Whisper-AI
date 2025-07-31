@@ -7,6 +7,8 @@ import { Globe, Paperclip, Plus, Send } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Textarea } from "@/components/ui/ textara"
+import GetResponse from "./getResponse"
+import { Message } from "@/types/type"
 
 interface UseAutoResizeTextareaProps {
   minHeight: number
@@ -101,15 +103,21 @@ export default function AiInput() {
       setImagePreview(URL.createObjectURL(file))
     }
   }
+
+
+  const [message , setMessage] = useState<Message[]>([])
   
   const handleSubmit = () => {
+    const newMessage: Message[] = [ 
+      ...message,
+      {value:value},
+    ]
+    setMessage(newMessage)
     setValue("")
     adjustHeight(true)
     setBottom(true)
   }
-  
-  console.log(bottom)
-  
+
   useEffect(() => {
     return () => {
       if (imagePreview) {
@@ -129,11 +137,12 @@ export default function AiInput() {
             }}
             layout
             style={{ justifyContent: bottom ? "end" : "flex-start" }} 
-        className={`flex flex-col h-full md:pt-20 pt-10 border border-dashed `}>  
-      <motion.div 
-            animate={{transition: {duration:0.4 , ease: "easeInOut"}}}
+        className={`flex flex-col h-full md:pt-20 pt-10 border border-dashed`}>  
+         <div className=" overflow-y-auto no-scrollbar flex flex-col-reverse px-4">
+  <GetResponse message={message} />
+</div>
+      <div 
            className={`relative max-w-4xl border rounded-[22px] w-full border-black/5 p-1 mx-auto`}> 
-
         <div className="relative rounded-2xl border border-black/5 bg-neutral-800/5 flex flex-col">
           <div
             className="overflow-y-auto"
@@ -280,7 +289,7 @@ export default function AiInput() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
       </motion.div>
     </div>
   )
