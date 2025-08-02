@@ -13,7 +13,7 @@ export default function GetResponse({
           key={index}
           className="bg-neutral-500/10 border border-dashed w-fit max-w-2xl rounded-md py-4 px-4 h-full text-right"
         >
-          hi! tell me if you need any {message.value}
+          hi! tell me if you need any {message.content}
         </div>
       ))}
     </div>

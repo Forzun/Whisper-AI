@@ -1,5 +1,6 @@
 export type Message = {
-    value: string;
+    role?: "user" | "assistant";
+    content: string;
   };
 
 export interface AiResponseProps {
