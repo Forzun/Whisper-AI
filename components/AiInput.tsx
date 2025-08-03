@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/ textara";
 import GetResponse from "./getResponse";
 import { Message } from "@/types/type";
+import AiResponse from "./AiResponse";
 
 interface UseAutoResizeTextareaProps {
   minHeight: number;
@@ -135,7 +136,8 @@ export default function AiInput() {
         className={`flex flex-col h-full md:pt-20 pt-10 border border-dashed`}
       >
         <div className=" overflow-y-auto no-scrollbar flex flex-col-reverse px-4">
-          <GetResponse message={message} />
+          {/* <GetResponse message={message} /> */}
+          <AiResponse message={message} />
         </div>
         <div
           className={`relative max-w-4xl border rounded-[22px] w-full border-black/5 p-1 mx-auto`}

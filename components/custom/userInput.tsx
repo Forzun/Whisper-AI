@@ -1,5 +1,4 @@
 "use client";
-import useMock from "@/hook/useMock";
 import { useResponse } from "@/hook/useResponse";
 import { Message } from "@/types/type";
 import { useState } from "react";
