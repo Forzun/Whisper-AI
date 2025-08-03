@@ -107,7 +107,7 @@ export default function AiInput() {
   const [message, setMessage] = useState<Message[]>([]);
 
   const handleSubmit = () => {
-    const newMessage: Message[] = [...message, { content: value }];
+    const newMessage: Message[] = [...message, { role: "user", content: value }];
     setMessage(newMessage);
     setValue("");
     adjustHeight(true);

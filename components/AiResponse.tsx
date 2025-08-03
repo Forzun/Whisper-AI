@@ -10,11 +10,18 @@ export default function AiResponse({message} : any){
     useEffect(() => {
         if (!message || message.length === 0) return;
 
+        const userMessage = message[message.length - 1]; // get latest user message
+
+        // Show the user message immediately
+        setResponse((prev) => [...prev, userMessage]);
+
         const processMessage = async () => {
             const assistantMessage = await handleResponse(message);
             
-            setResponse(assistantMessage);
-            console.log(response)
+            setResponse((prev) => [
+                ...prev,
+                ...assistantMessage   // One or more assistant messages
+              ]);
         };
 
         processMessage();
