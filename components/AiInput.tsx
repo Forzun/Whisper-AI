@@ -133,9 +133,9 @@ export default function AiInput() {
         }}
         layout
         style={{ justifyContent: bottom ? "end" : "flex-start" }}
-        className={`flex flex-col h-full md:pt-20 pt-10 border border-dashed`}
+        className={`flex flex-col h-full md:pt-20 pt-10 border border-dashed relative`}
       >
-        <div className=" overflow-y-auto no-scrollbar flex flex-col-reverse px-4">
+        <div className="overflow-y-auto no-scrollbar flex flex-col-reverse px-4 ">
           {/* <GetResponse message={message} /> */}
           <AiResponse message={message} />
         </div>

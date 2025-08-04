@@ -14,7 +14,7 @@ export default function useMock(){
             setLoading(true);
             const metaData:Message[] = [ {
                 role:"assistant", 
-                content:"Hello my how can i help you"
+                content:"Hi there! How can I help you today? Do you have any questions, need some information, want to chat, or anything else at all? Just let me know!"
             }] 
 
             await new Promise((res) => setTimeout(res, 2000));
