@@ -2,10 +2,11 @@ import { Message } from "@/types/type";
 import GetResponse from "./getResponse";
 import useMock from "@/hook/useMock";
 import { useEffect, useState } from "react";
+import { useResponse } from "@/hook/useResponse";
 
 export default function AiResponse({message} : any){
     const [response, setResponse] = useState<Message[]>([]);
-    const { loading, handleResponse } = useMock();
+    const { loading, handleResponse } = useResponse();
 
     useEffect(() => {
         if (!message || message.length === 0) return;
@@ -20,8 +21,9 @@ export default function AiResponse({message} : any){
             
             setResponse((prev) => [
                 ...prev,
-                ...assistantMessage   // One or more assistant messages
+                {role:"assistant" , content:assistantMessage}
               ]);
+              console.log(response)
         };
 
         processMessage();
