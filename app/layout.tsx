@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} antialiased bg-neutral-950`}
+        className={`${inter.className} antialiased`}
       >
         <ThemeProvider
             attribute="class"

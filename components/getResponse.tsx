@@ -23,7 +23,7 @@ export default function GetResponse({
       {message.map((message: Message, index) => (
         <div
           key={index}
-          className="bg-neutral-500/10 border flex gap-2 border-dashed w-fit max-w-2xl rounded-md py-4 px-4 h-full"
+          className="bg-neutral-500/10 border flex border-dashed w-fit max-w-2xl rounded-md py-4 px-4 h-full"
         >
           <b>{message.role == "user" ? "Me :" : <BotMessageSquare />}</b>
           <p className=" w-fit text-right px-3">{message.content}</p>
