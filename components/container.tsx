@@ -8,7 +8,7 @@ export default function Container({
   className?: string;
 }) {
   return (
-    <div className={cn("max-w-full relative mx-auto min-h-screen ", className)}>
+    <div className={cn(" w-full max-w-[1400px] min-[1800px]:max-w-screen-2xl mx-auto relative min-h-screen ", className)}>
       {children}
     </div>
   );

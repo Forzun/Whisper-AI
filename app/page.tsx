@@ -1,11 +1,12 @@
-import UserInput from "@/components/custom/userInput";
+import Hero from "@/components/Hero";
+import Container from "@/components/container";
 import Navbar from "@/components/navbar";
 
 export default function Home() {
-  return <div className="container-wrapper">
-       <div className="">
+  return <div className="min-h-screen h-full flex flex-col items-center">
+       <Container>
           <Navbar />
-          
-       </div>
+          <Hero />
+       </Container>
   </div>
 }
