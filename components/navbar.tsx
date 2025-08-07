@@ -44,8 +44,8 @@ export default function Navbar() {
     <nav className="flex items-center justify-between p-5 overflow-hidden md:px-12 px-2">
       <div>
         <a
-          href="/home"
-          className="text-lg font-bold text-neutral-900 dark:text-neutral-100" 
+          href="#"
+          className="text-xl font-bold text-neutral-900 dark:text-neutral-100" 
         >
           Whisper.Ai
         </a>
