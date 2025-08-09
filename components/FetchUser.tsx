@@ -22,8 +22,6 @@ function UserNavPrivider() {
     <div className="size-10 rounded-full p-1 border-1 border-dashed border-neutral-300 dark:border-neutral-700 ">
       {status != "unauthenticated" && image ? (
         <DrapLogo image={image} />
-      ) : status != "unauthenticated" ? (
-        <div className="w-8 h-8 bg-gray-300 rounded-full" />
       ) : (
         <Button
           variant={"default"}
