@@ -7,7 +7,12 @@ export async function fetchFromOpenRouter(messages: { role: string; content: str
       },
       body: JSON.stringify({
         model: "google/gemma-3n-e2b-it:free",
-        messages:messages
+        messages:[
+          {
+            role: messages[messages.length - 1].role,
+            content: `Rewrite the following in a formal and professional tone:\n\n${messages[messages.length - 1].content}`
+          }
+        ]
       }),
     });
   

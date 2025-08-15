@@ -8,7 +8,6 @@ export function useResponse(){
 
     async function handleResponse(message:Message[]){  
         try{
-            console.log(message)
             setLoading(true);
             const res = await fetch("api/chat" , { 
             method:"POST",
@@ -17,7 +16,6 @@ export function useResponse(){
         })
 
         const data = await res.json();
-        console.log(data)
 
         if(data){ 
             setResponse(m => [...message , {role: "assistant" , content: data.data} as Message]);

@@ -1,14 +1,14 @@
 import { AiResponseProps, Message } from "@/types/type";
 import { motion, AnimatePresence } from "framer-motion";
 import { BotMessageSquare } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 
 export default function GetResponse({
   message,
-  role,
-  isAssistant,
   loading,
 }: AiResponseProps) {
-  console.log(message)
+
+
   return (
     <AnimatePresence>
     <motion.div
@@ -26,9 +26,11 @@ export default function GetResponse({
           className="bg-neutral-500/10 border flex border-dashed w-fit max-w-2xl rounded-md py-4 px-4 h-full"
         >
           <b>{message.role == "user" ? "Me :" : <BotMessageSquare />}</b>
-          <p className=" w-fit text-right px-3">{message.content}</p>
+          <span className="w-fit text-left px-3 ">
+            <ReactMarkdown>{message.content}</ReactMarkdown>
+          </span>
         </div>
-      ))}
+      ))}   
       {loading && ( 
         <div className="bg-neutral-500/10 border border-dashed w-fit flex gap-2 max-w-2xl rounded-md py-4 px-4 h-full text-right">
           <b><BotMessageSquare className="" /></b>

@@ -64,16 +64,6 @@ export default function Navbar() {
   );
 }
 
-// async function UserImg(){
-//     const session = await getServerSession();
-//     const url = session?.user?.image!
-//     console.log(session)
-
-// return<div className="size-10 rounded-full p-1 border-1 border-dashed border-neutral-700">
-//         {session ? DrapLogo(): <Button variant={"default"} className="px-6 py-4 border-1 border-dashed border-neutral-700" ><a href="/api/auth/signin">Signin</a></Button> }
-//     </div>
-// }
-
 export function DrapLogo({ image }: { image: string }) {
   return (
     <DropdownMenu>

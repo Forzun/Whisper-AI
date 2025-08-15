@@ -107,6 +107,7 @@ export default function AiInput() {
   const [message, setMessage] = useState<Message[]>([]);
 
   const handleSubmit = () => {
+    const correctMessage = `Rewrite the following in a formal and professional tone:\n\n${value}`
     const newMessage: Message[] = [...message, { role: "user", content: value }];
     setMessage(newMessage);
     setValue("");
