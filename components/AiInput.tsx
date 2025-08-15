@@ -7,9 +7,9 @@ import { Globe, Paperclip, Plus, Send } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/ textara";
-import GetResponse from "./getResponse";
 import { Message } from "@/types/type";
 import AiResponse from "./AiResponse";
+import Marque from "./marquee";
 
 interface UseAutoResizeTextareaProps {
   minHeight: number;
@@ -107,8 +107,11 @@ export default function AiInput() {
   const [message, setMessage] = useState<Message[]>([]);
 
   const handleSubmit = () => {
-    const correctMessage = `Rewrite the following in a formal and professional tone:\n\n${value}`
-    const newMessage: Message[] = [...message, { role: "user", content: value }];
+    const correctMessage = `Rewrite the following in a formal and professional tone:\n\n${value}`;
+    const newMessage: Message[] = [
+      ...message,
+      { role: "user", content: value },
+    ];
     setMessage(newMessage);
     setValue("");
     adjustHeight(true);
@@ -134,7 +137,7 @@ export default function AiInput() {
         }}
         layout
         style={{ justifyContent: bottom ? "end" : "flex-start" }}
-        className={`flex flex-col h-full md:pt-20 pt-10 border-t border-dashed border-neutral-300 dark:border-neutral-700/70 relative`}  
+        className={`flex flex-col h-full md:pt-20 pt-10 border-t border-dashed border-neutral-300 dark:border-neutral-700/70 relative`}
       >
         <div className="overflow-y-auto no-scrollbar flex flex-col-reverse px-4 ">
           {/* <GetResponse message={message} /> */}
@@ -289,6 +292,10 @@ export default function AiInput() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="min-w-7xl pt-10 mx-auto mask-x-from-80% mask-x-to-90%">
+            <Marque />
         </div>
       </motion.div>
     </div>
