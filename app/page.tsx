@@ -1,5 +1,7 @@
 import Hero from "@/components/Hero";
+import LogoCloudTwo from "@/components/LogoCloude";
 import Container from "@/components/container";
+import Features from "@/components/features-2";
 import Navbar from "@/components/navbar";
 
 export default function Home() {
@@ -7,6 +9,8 @@ export default function Home() {
        <Container>
           <Navbar />
           <Hero />
+          <LogoCloudTwo />
+          <Features />
        </Container>
   </div>
 }
