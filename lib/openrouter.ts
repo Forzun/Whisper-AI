@@ -1,4 +1,5 @@
 export async function fetchFromOpenRouter(messages: { role: string; content: string }[]) {
+    console.log(messages, "routerMessage");
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -16,10 +17,27 @@ export async function fetchFromOpenRouter(messages: { role: string; content: str
       }),
     });
   
+    const data = await response.json();
     if (!response.ok) {
-      throw new Error("Failed to fetch from OpenRouter");
+      const errorMsg = data.error?.message || "Fetch to failed from ai"; 
+      console.error("Response through from ai" , { 
+        status: response.status, 
+        error: data.error,
+      })
+      return {
+        sucess: false, message: errorMsg,
+      }
+    }
+
+    if(!data.choices?.[0]?.message?.content){ 
+      console.error("Response through from ai" , { 
+        status: response.status, 
+        error: data.error,
+      })
+      return {
+        sucess: false, message: "No response from AI",
+      }
     }
   
-    const data = await response.json();
     return data.choices[0].message.content;
   }

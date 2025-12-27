@@ -4,9 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req:NextRequest ) { 
     try{ 
         const messages = await req.json();  
-        console.log(messages.messages)
         const response = await fetchFromOpenRouter(messages.messages);
-        console.log(response)
         return NextResponse.json({
             data:response
         })

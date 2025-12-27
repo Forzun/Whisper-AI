@@ -16,6 +16,7 @@ export function useResponse(){
         })
 
         const data = await res.json();
+        console.log(data);
 
         if(data){ 
             setResponse(m => [...message , {role: "assistant" , content: data.data} as Message]);

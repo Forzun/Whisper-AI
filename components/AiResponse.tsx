@@ -1,6 +1,5 @@
 import { Message } from "@/types/type";
 import GetResponse from "./getResponse";
-import useMock from "@/hook/useMock";
 import { useEffect, useState } from "react";
 import { useResponse } from "@/hook/useResponse";
 
