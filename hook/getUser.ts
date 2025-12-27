@@ -1,8 +1,8 @@
-import { getServerSession } from "next-auth";
+import { auth } from "@/lib/auth";
 
 export default async function getUser(){ 
-    const server = await getServerSession();
-    const user = server?.user;
+    const session = await auth();
+    const user = session?.user;
 
     if(user){ 
         return true;
