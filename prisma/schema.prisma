@@ -70,15 +70,8 @@ model Usage {
 }
 
 model UserMessage {
-  id        Int       @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   UserId    String?
   message   String
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
 }
-
-model Message { 
-  id      String
-  
-}
-
-
