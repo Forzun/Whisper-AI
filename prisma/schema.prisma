@@ -57,3 +57,28 @@ model VerificationToken {
   @@unique([identifier, token])
   @@map("verification_tokens")
 }
+
+model Usage {
+  id        String   @id @default(cuid())
+  userId    String?
+  guestId   String?
+  count     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, guestId])
+}
+
+model UserMessage {
+  id        Int       @id @default(autoincrement())
+  UserId    String?
+  message   String
+  createdAt DateTime  @default(now())
+}
+
+model Message { 
+  id      String
+  
+}
+
+
