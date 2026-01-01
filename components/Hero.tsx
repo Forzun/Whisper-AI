@@ -33,6 +33,14 @@ export default function Hero() {
     }
   };
 
+  const DemoHandler = async () => {
+    if (!session?.user) {
+      router.push("/demo");
+    } else {
+      router.push("/home");
+    }
+  };
+
   return (
     <div className="relative flex flex-col items-center mt-24 px-6 md:px-8">
       <div className="">
@@ -51,7 +59,11 @@ export default function Hero() {
         <Button onClick={() => UserHandler()} className="cursor-pointer">
           Get Started for free
         </Button>
-        <Button className="cursor-pointer" variant={"ghost"}>
+        <Button
+          onClick={() => DemoHandler()}
+          className="cursor-pointer"
+          variant={"ghost"}
+        >
           Request to demo
         </Button>
       </div>
