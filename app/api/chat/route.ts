@@ -5,6 +5,7 @@ export async function POST(req:NextRequest ) {
     try{ 
         const messages = await req.json();  
         const response = await fetchFromOpenRouter(messages.messages);
+        
         return NextResponse.json({
             data:response
         })

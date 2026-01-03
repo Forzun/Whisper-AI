@@ -5,10 +5,11 @@ import { fetchFromOpenRouter } from "@/lib/openrouter";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request){
+    console.log("request come inside..... ");
     const session = await auth()
-    console.log(session);
+    console.log(session)
 
-    const userId = session?.user?.id; 
+    const userId = session?.user?.id;
     let guestId
 
     if(!userId){ 
@@ -28,18 +29,14 @@ export async function POST(req: Request){
     }
 
     const body = await req.json();
-    const { prompt } = body;
-
-    const message = { 
-        role: "user", 
-        content: "hi..."
-    }
-    const answer = await fetchFromOpenRouter([message])
+    console.log(body)
+    const response = await fetchFromOpenRouter(body.messages)
+    console.log("the ans will show up : " , response)
 
     return NextResponse.json({
-        answer,
+        data:response,
         remaining: usage.remaining,
-        prompt: prompt
+        // prompt: prompt
     });
 
 }

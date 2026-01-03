@@ -1,5 +1,5 @@
 export async function fetchFromOpenRouter(messages: { role: string; content: string }[]) {
-    console.log(messages, "routerMessage");
+    const userMessage = messages[messages.length -1].content;     
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -11,7 +11,7 @@ export async function fetchFromOpenRouter(messages: { role: string; content: str
         messages:[
           {
             role: messages[messages.length - 1].role,
-            content: `Rewrite the following in a formal and professional tone:\n\n${messages[messages.length - 1].content}`
+            content: `You are a professional editor. Rewrite the following text in a formal and professional tone. Maintain the original meaning while improving clarity and formality:\n\n${userMessage}`
           }
         ]
       }),

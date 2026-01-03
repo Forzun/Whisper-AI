@@ -8,4 +8,8 @@ export interface AiResponseProps {
     role?: string;
     isAssistant?: boolean;
     loading?: boolean;
+    limit: { 
+      status: boolean,
+      message?: string
+    }
   }

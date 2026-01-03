@@ -92,9 +92,9 @@ export default function AiInput() {
     e.preventDefault();
     e.stopPropagation();
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; // Reset file input
+      fileInputRef.current.value = "";
     }
-    setImagePreview(null); // Use null instead of empty string
+    setImagePreview(null);
   };
 
   const handelChange = (e: any) => {
@@ -125,6 +125,7 @@ export default function AiInput() {
       }
     };
   }, [imagePreview]);
+  
   return (
     <div className="w-full overflow-hidden h-[90vh]">
       <motion.div
@@ -140,7 +141,6 @@ export default function AiInput() {
         className={`flex flex-col h-full md:pt-20 pt-10 border-t border-dashed border-neutral-300 dark:border-neutral-700/70 relative`}
       >
         <div className="overflow-y-auto no-scrollbar flex flex-col-reverse px-4 ">
-          {/* <GetResponse message={message} /> */}
           <AiResponse message={message} />
         </div>
         <div
