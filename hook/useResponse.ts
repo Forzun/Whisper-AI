@@ -20,7 +20,7 @@ export function useResponse(){
             const res = await fetch("/api/llm/chat" , { 
             method:"POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({messages: message})
+            body: JSON.stringify({message: message})
         })
 
         if (res.status === 403) {

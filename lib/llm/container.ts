@@ -1,14 +1,9 @@
-import { model as ModelType, ModelConfig } from "@/types/type";
+import { model as ModelType, ModelConfig, Message } from "@/types/type";
 import { getApiKey } from "./get-api-key";
 
-export async function fetchFromOpenRouter(messages: { role: string; content: string }[], model: ModelType) {
-
-    const modelName: Partial<Record<ModelType , ModelConfig>> = { 
-      "google/gemma-3n-e2b-it:free": {key: process.env.OPENROUTER_API_KEY!},
-      "arcee-ai/trinity-mini:free": {key:process.env.Arcee_AI!} 
-    }
+export async function fetchFromOpenRouter(messages: Message[], model: ModelType) {
     
-    const apiKey = getApiKey(model); 
+    const { key: apiKey } = getApiKey(model); 
     console.log("api key:", apiKey)
 
     console.log("user message :", messages)
@@ -20,10 +15,10 @@ export async function fetchFromOpenRouter(messages: { role: string; content: str
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: model,
+        model,
         messages:[
           {
-            role: "system", 
+            role: "user", 
             content: `You are a creative and witty tweet title generator. When given an idea, your job is to transform it into 3 funny, engaging, and viral-worthy tweet titles.
 
             Follow these rules:
@@ -35,7 +30,7 @@ export async function fetchFromOpenRouter(messages: { role: string; content: str
             - Output ONLY the 3 tweet titles, numbered 1 to 3, nothing else`
           },
           {
-            role: messages[messages.length - 1].role,
+            role: messages[messages.length - 1].role ?? "user",
             content: `${userMessage}`
           }
         ]

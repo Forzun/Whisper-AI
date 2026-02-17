@@ -28,13 +28,13 @@ export async function POST(req: Request){
           );
     }
 
-    const body = await req.json();
+    const body = await req.json(); // expects { message: Message[] }
     console.log("backend body:", body)
-    const response = await summarizeText(body.message);
+    const response = await summarizeText(body);
     console.log("the ans will show up : " , response)
 
     return NextResponse.json({
-        data: response.data,
+        data: response,
         remaining: usage.remaining,
         // prompt: prompt
     });
