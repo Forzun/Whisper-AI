@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Globe, Paperclip, Plus, Send } from "lucide-react";
 
@@ -10,6 +9,7 @@ import { Textarea } from "@/components/ui/ textara";
 import { Message } from "@/types/type";
 import AiResponse from "./AiResponse";
 import Marque from "./marquee";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "./ui/select";
 
 interface UseAutoResizeTextareaProps {
   minHeight: number;
@@ -72,7 +72,7 @@ const AnimatedPlaceholder = ({ showSearch }: { showSearch: boolean }) => (
       transition={{ duration: 0.1 }}
       className="pointer-events-none w-[150px] text-sm absolute text-black/70 dark:text-white/70"
     >
-      {showSearch ? "Not available yet" : "Ask Skiper Ai..."}
+      {showSearch ? "Not available yet" : "Ask Whisper Ai..."}
     </motion.p>
   </AnimatePresence>
 );
@@ -80,6 +80,7 @@ const AnimatedPlaceholder = ({ showSearch }: { showSearch: boolean }) => (
 export default function AiInput() {
   const [value, setValue] = useState("");
   const [bottom, setBottom] = useState(false);
+  const [model , setModel] = useState("Default")
   const { textareaRef, adjustHeight } = useAutoResizeTextarea({
     minHeight: MIN_HEIGHT,
     maxHeight: MAX_HEIGHT,
@@ -107,10 +108,10 @@ export default function AiInput() {
   const [message, setMessage] = useState<Message[]>([]);
 
   const handleSubmit = () => {
-    const correctMessage = `Rewrite the following in a formal and professional tone:\n\n${value}`;
     const newMessage: Message[] = [
       ...message,
-      { role: "user", content: value },
+      { role: "user", content: value , model},
+
     ];
     setMessage(newMessage);
     setValue("");
@@ -179,14 +180,28 @@ export default function AiInput() {
 
             <div className="h-12 bg-black/5 dark:bg-white/5 rounded-b-xl">
               <div className="absolute left-3 bottom-3 flex items-center gap-2">
-                <label
+                  <div className="">
+                    <Select onValueChange={(value) => setModel(value)}>
+                      <SelectTrigger className="w-full max-w-48 rounded-full border-none">
+                        <SelectValue placeholder="Select a model" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Default</SelectLabel>
+                          <SelectItem value="google/gemma-3n-e2b-it:free">google/gemma-3n-e2b-it:free</SelectItem>
+                          <SelectItem value="arcee-ai/trinity-mini:free">arcee-ai/trinity-mini:free</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                {/* <label
                   className={cn(
                     "cursor-pointer relative rounded-full p-2 bg-black/5 dark:bg-white/5",
                     imagePreview
                       ? "bg-[#ff3f17]/15 border border-[#ff3f17] text-[#ff3f17]"
                       : "bg-black/5 dark:bg-white/5 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white"
                   )}
-                >
+                > 
                   <input
                     type="file"
                     ref={fileInputRef}
@@ -216,7 +231,7 @@ export default function AiInput() {
                       </button>
                     </div>
                   )}
-                </label>
+                </label> */}
                 <button
                   type="button"
                   onClick={() => {
@@ -295,7 +310,7 @@ export default function AiInput() {
         </div>
 
         <div className="min-w-7xl pt-10 mx-auto mask-x-from-80% mask-x-to-90%">
-            <Marque />
+            <Marque setValue={setValue} />
         </div>
       </motion.div>
     </div>

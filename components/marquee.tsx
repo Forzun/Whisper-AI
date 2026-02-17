@@ -1,6 +1,6 @@
 import Marquee from "react-fast-marquee";
 
-export default function Marque() {
+export default function Marque({setValue}: {setValue: React.Dispatch<React.SetStateAction<string>>}) {
 
     const marquessData = [
         "A day without sunshine is like, you're drowning",
@@ -29,13 +29,13 @@ export default function Marque() {
   return (
     <div>
       <Marquee pauseOnHover direction="left">
-         <Data marquessData={marqueeData2} />
+         <Data marquessData={marqueeData2} setValue={setValue} />
       </Marquee>
     </div>
   );
 }
 
-function Data({ marquessData }: { marquessData: string[] }) {
+function Data({ marquessData , setValue}: { marquessData: string[] , setValue: React.Dispatch<React.SetStateAction<string>>}) {
 
   return (
     <div className="flex gap-10 flex-wrap items-center mr-10 justify-center">
@@ -44,7 +44,7 @@ function Data({ marquessData }: { marquessData: string[] }) {
           key={index}
           className="text-neutral-200 bg-neutral-500/10 hover:text-neutral-300/90 w-fit h-fit transition duration-150 cursor-pointer border rounded-full px-7 py-2 text-sm border-neutral-800"
         >
-          <p>{marque}</p>
+          <button onClick={() => setValue(marque)}>{marque}</button>
         </div>
       ))}
     </div>

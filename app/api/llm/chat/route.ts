@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { checkAndIncrementUsage } from "@/lib/check-user";
 import { getOrCreateGuestId } from "@/lib/guest";
-import { fetchFromOpenRouter } from "@/lib/openrouter";
+import { summarizeText } from "@/lib/llm/header";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request){
@@ -29,14 +29,13 @@ export async function POST(req: Request){
     }
 
     const body = await req.json();
-    console.log(body)
-    const response = await fetchFromOpenRouter(body.messages)
+    console.log("backend body:", body)
+    const response = await summarizeText(body.message);
     console.log("the ans will show up : " , response)
 
     return NextResponse.json({
-        data:response,
+        data: response.data,
         remaining: usage.remaining,
         // prompt: prompt
     });
-
 }
